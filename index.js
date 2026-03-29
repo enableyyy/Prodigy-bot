@@ -132,7 +132,7 @@ function eventStart(event) {
 }
 
 async function listSports() {
-  const data = await oddsApi('/sports', {}, false);
+  const data = await oddsApi('/sports', {}, true);
   const sports = unwrapList(data).map(item => {
     const slug = item?.slug || item?.key || item?.id || item?.name || '';
     const name = item?.name || item?.title || item?.displayName || slug;
@@ -142,7 +142,7 @@ async function listSports() {
   return sports;
 }
 async function listBookmakers() {
-  const data = await oddsApi('/bookmakers', {}, false);
+  const data = await oddsApi('/bookmakers', {}, true);
   return unwrapList(data).map(item => {
     if (typeof item === 'string') return { slug: item, name: item };
     return {
